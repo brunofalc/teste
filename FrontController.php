@@ -46,7 +46,7 @@ class FrontController {
         session_start();
 
     //conecta com o DB
-        $host="local";
+        $host="remoto";
 
         if ($host=="local"){
             $conect = mysql_connect("localhost","root","");
@@ -170,22 +170,3 @@ class FrontController {
     }
 	
 }
-
-/*
-trait Singleton
-{
-    private static $_instance = NULL;
-    
-    final protected function __construct()
-    {
-        self::$_instance =& $this;
-    }
-
-    final private function __clone()
-    {}
-
-    final public static function getInstance()
-    {
-        return self::$_instance ? self::$_instance : new self();
-    }
-} */
