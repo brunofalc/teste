@@ -32,7 +32,7 @@ function __autoload($class_name) {
     }
 }
 
-class FrontController {
+class FrontControllerSig {
 	
     public $controller;
 
@@ -40,7 +40,7 @@ class FrontController {
 
     //recebe o controller e o action
         $m = (!isset($_GET['m'])) ? "Index" : $_GET['m'];
-        $c = (!isset($_GET['c'])) ? "Index" : $_GET['c'];
+        $d = (!isset($_GET['c'])) ? "Index" : $_GET['c'];
         $a = (!isset($_GET['a'])) ? "Index" : $_GET['a'];
         
         session_start();
@@ -146,27 +146,5 @@ class FrontController {
         return $novo;
     }
 
-    public function sessaoValida(){
-
-        if (isset($_SESSION['LAST_ACTIVITY'])) {
-            $arg['now'] = date("Y-m-d H:i:s", time());
-            $arg['stamp'] = date("Y-m-d H:i:s",$_SESSION['LAST_ACTIVITY']);                
-            $arg['dif'] = (time() - $_SESSION['LAST_ACTIVITY']);
-            $arg['login'] = $_SESSION['login'];
-            
-            if((time() - $_SESSION['LAST_ACTIVITY'])>1800) { //60*30
-                session_unset();
-                $retorno = false;
-            } else {
-                $_SESSION['LAST_ACTIVITY'] = time();
-                $retorno = true;
-            }
-        } else {
-            $retorno = false;
-        }
-
-        return $retorno;
-
-    }
 	
 }
